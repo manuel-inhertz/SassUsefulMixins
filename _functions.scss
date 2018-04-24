@@ -1,0 +1,32 @@
+/*
+Author: Manuel InHertz
+Website: www.manuel-inhertz.com
+
+Copy this file to your scss folder and import it to your main.scss file with @import 'functions';
+To use these functions in your project just type e.g color:name(value) where you want them to be applied.
+*/
+
+@function sum($left, $right) {
+	@return $left + $right;
+}
+
+// TURN PX TO EM
+@function em($pixels, $context: 16px) {
+	@return ($pixels / $context) * 1em;
+}
+
+//TURNS ANY SIZE TO REM
+@function rem( $size ){
+  $remSize: $size / $base-font-size;
+  @return $remSize * 1rem;
+}
+
+//COL FUNCTION
+@function col-width($columns: 12, $page-width: 100%, $gap: 1%) {
+	@return ($page-width - $gap*($columns - 1)) / $columns;
+}
+
+@function strip-unit($val) {
+	@return $val / ($val*0 + 1);
+}
+

@@ -1,0 +1,134 @@
+/*
+Author: Manuel InHertz
+Website: www.manuel-inhertz.com
+
+Copy this file to your scss folder and import it to your main.scss file with @import 'mixin';
+To use these mixins in your project use the @include where you want them to be applied.
+*/
+
+// MEDIA QUERIES PRE-SETTINGS 
+
+@mixin tiny-screens() {
+	@media only screen and (max-width: 320px) {
+		@content;
+	}
+}
+
+@mixin small-screens() {
+	@media only screen and (max-width: 480px) {
+		@content;
+	}
+}
+
+@mixin medium-screens() {
+	@media only screen and (max-width: 680px) {
+		@content;
+	}
+}
+
+@mixin large-screens() {
+	@media only screen and (max-width: 960px) {
+		@content;
+	}
+}
+
+// JUST A WARNING-LIKE BACKGROUND
+@mixin warning {
+	background-color: orange;
+	color: #fff;
+}
+
+//A FAST WAY TO LINK A GOOGLE FONT
+@mixin google-font($font) {
+	$font: unquote($font);
+	@import url(https://fonts.googleapis.com/css?family=#{$font});
+}
+
+//TEXT SIZE AND BOLD
+@mixin text-size($size) {
+	font: {
+		size: $size;
+		weight: bold;
+	}
+}
+
+//ADDS BORDER RADIUS .. 100% DEFAULT
+@mixin rounded($radius: 100%) {
+	border-radius: $radius;
+}
+
+
+@mixin box($radius:6px, $border:1px solid #333) {
+	@include rounded($radius);
+	border: $border;
+}
+
+@mixin standard-links {
+	a {
+		font-style: italic;
+		text-decoration: none;
+	}
+}
+
+@mixin box-shadow($shadows...) {
+	box-shadow: $shadows;
+	-moz-box-shadow: $shadows;
+	-webkit-box-shadow: $shadows;
+}
+
+// SVG BACKGROUND AND PNG FOR UNSUPPORTED BROWSERS
+$image-path: '../img' !default;
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';
+@mixin background-image($name, $size:false){
+    background-image: url(#{$image-path}/#{$name}.svg);
+    @if($size){
+        background-size: $size;
+    }
+    .no-svg &{
+        background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+          background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+        }
+    }
+}
+
+//ANIMATIONS
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+//TRANSITIONS
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
