@@ -2,10 +2,6 @@
 
 > All the useful mixins and functions that i use with SASS. Il'll keep this repo always updated with new stuff.
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
 ## Usage example
 
 The mixins can accept arguments and do calculations. The output of this mixin (in this case) is a CSS rule and will be unfurled where ever you @include it.
